@@ -1,0 +1,43 @@
+<div class="container m-auto bg-color-whithe" *ngIf="!this.longSp">
+
+  <nav class="navbar navbar-light bg-light">
+    <div class="col-md-12 text-center">
+      <form [formGroup]="form" class="form-inline">
+        <input class="form-control mr-sm-2" type="search" (keyup)="searchText()" placeholder="Search"
+          aria-label="Search" formControlName="filterTex">
+      </form>
+    </div>
+  </nav>
+
+
+
+
+  <div class="row m-auto">
+    <div class="col-md-12">
+      <div class="card-group shadow rounded m-1">
+        <h6 class="m-auto" *ngIf="!this.form.controls.filterTex.value||this.form.controls.filterTex.value==''"
+          style="font-size: 30px;font-weight: 500;color: grey;font-family: Tajawal,sans-serif;">
+          Por favor ingrese el <b> usuario </b> a buscar...</h6>
+        <div *ngIf="long >= 3" class="card">
+          <div class="m-2 text-center">
+            <img class="imgRedodna m-auto" [src]="user.avatar_url" alt="img github">
+          </div>
+          <div class="card-body bt">
+            <h5 class="card-title">Usuario github</h5>
+            <p class="card-text"><small class="text-muted">nombre : <strong> {{this.user.name}} </strong></small></p>
+            <p class="card-text"><small class="text-muted">Login : <strong> {{this.user.login}} </strong></small></p>
+            <p class="card-text"><small class="text-muted">Tipo : <strong> {{this.user.type}} </strong></small></p>
+            <!-- en la siguiente linea se llama al pipe creado para determinar el score -->
+            <p class="card-text"><small class="text-muted">Score : <strong> {{user |
+                  FilterGit:this.form.controls.filterTex.value}} </strong></small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-full text-center" *ngIf="this.longSp">
+  <img class="m-auto" src="../../../../assets/spinner/spinner.jpg"  alt="cargando" >
+</div>
