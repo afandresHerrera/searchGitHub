@@ -68,25 +68,25 @@ export class UsersGitHubComponent implements OnInit {
       }
       this.form.reset();
     }
-    if ( this.form.controls.filterTex.value.length > 3) {
+    if (this.form.controls.filterTex.value.length > 3) {
       return
     }
     if (this.form.controls.filterTex.value.length >= 3) {
-      this._listUserServici.getUsesr(this.form.controls.filterTex.value).subscribe((data: any) => {
-        if (data) {
-          this.longSp = true
-          this.user = data
-          console.log(this.user);
-          setTimeout(() => {
-            this.longSp = false
-          }, 1000);
-        } 
+      setTimeout(() => {
+        this._listUserServici.getUsesr(this.form.controls.filterTex.value).subscribe((data: any) => {
+          if (data) {
+            // this.longSp = true
+            this.user = data
+            console.log(this.user);
+            //   this.longSp = false
+          }
 
-      }, err => {
-        console.log(err)
-        alert(err.error.message)
-        return
-      })
+        }, err => {
+          console.log(err)
+          alert(err.error.message)
+          return
+        })
+      }, 650);
     }
   }
 
